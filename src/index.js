@@ -72,15 +72,21 @@ xlsxFile('../EMPRESAS.xlsx').then((rows) => {
           row[4].includes('SOCIEDAD ANONIMA ') ||
           row[4].includes(' S.A.') ||
           row[4].includes(' S A ') ||
-          row[4].includes('S A ')
+          row[4].includes('S A ') ||
+          row[4].match(/s\.\ ?a\./i)  ||
+          row[4].match(/sociedad.?an.nima/i)  ||
+          row[4].match(/(sa)$/i)
         ) {
           tipoEmpresa = 'SA'
         } else if (
-          row[4].match('RESPONSABILIDAD LIMITADA') ||
-          row[4].match('S de RL') ||
-          row[4].match('S de R L') ||
-          row[4].match('RL') ||
-          row[4].match('R L')
+          row[4].includes('RESPONSABILIDAD LIMITADA') ||
+          row[4].includes('S de RL') ||
+          row[4].includes('S de R L') ||
+          row[4].includes('RL') ||
+          row[4].includes('R L') ||
+          row[4].match(/r\ ?l/i) ||
+          row[4].match(/S\ de\ R\ ?L/i) ||
+          row[4].match(/RESPONSABILDAD.?LIMITADA/i)
         ) {
           tipoEmpresa = 'SDRL'
         } else {
